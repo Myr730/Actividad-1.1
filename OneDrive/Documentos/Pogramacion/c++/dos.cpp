@@ -109,7 +109,7 @@ void mezclarVector(vector<int>& datos) {
     shuffle(datos.begin(), datos.end(), generador);
 }
 
-
+ //Función principal para pruebas, datos aleatorios, calcula medianas y medir tiempos de ejecución
 int main() {
     srand(time(0));
 
@@ -121,5 +121,53 @@ int main() {
     cout << "Tamaños: 2^20, 2^21, 2^22, 2^23, 2^24 elementos" << endl;
     cout << "Repeticiones por tamaño: " << repeticiones << endl;
     cout << "Rango de valores: 0 a " << valorMaximo << endl;
+    cout << "================================================================" << endl;
+
+    for (int tamaño : tamanios) {
+        vector<long long> tiemposEjecucion;
+        int mediana = 0;
+        
+        cout << "\nProcesando tamaño: " << tamaño << " elementos" << endl;
+        
+        // repetir varias veces para obtener promedio
+        for (int rep = 0; rep < repeticiones; rep++) {
+            // generar datos aleatorios en el rango 0 a el valormaximo
+            vector<int> datos = generarDatosAleatorios(tamaño, valorMaximo + 1);
+            mezclarVector(datos);
+            vector<int> copiaDatos = datos;
+            // medir tiempo de ejecucion del calculo de la mediana
+            auto inicio = high_resolution_clock::now();
+            
+            mediana = calcularMedianaQuickSelect(copiaDatos);
+            
+            auto fin = high_resolution_clock::now();
+            auto duracion = duration_cast<milliseconds>(fin - inicio);
+            
+            tiemposEjecucion.push_back(duracion.count());
+            
+            cout << "Repetición " << rep + 1 << ": " << duracion.count() << " ms";
+            cout << " | Mediana: " << mediana << endl;
+        }
+        
+        // calcular promedio y desviación estándar 
+        long long suma = 0;
+        for (long long tiempo : tiemposEjecucion) {
+            suma += tiempo;
+        }
+        double promedio = static_cast<double>(suma) / repeticiones;
+        
+        double sumaDiferencias = 0;
+        for (long long tiempo : tiemposEjecucion) {
+            sumaDiferencias += (tiempo - promedio) * (tiempo - promedio);
+        }
+        double desviacionEstandar = sqrt(sumaDiferencias / repeticiones);
+        
+        // Mostrar estadísticas
+        cout << "Tiempo promedio: " << promedio << " ms, ";
+        cout << "Desviación estándar: " << desviacionEstandar << " ms" << endl;
+    }
+    
+    return 0;
+
 
 }
