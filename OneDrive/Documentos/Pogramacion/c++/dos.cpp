@@ -102,7 +102,7 @@ vector<int> generarDatosAleatorios(int tamaño, int valorMaximo) {
     return datos;
 }
 
- //mezcla de elementos en un vector de forma aleatoria
+ //mezclar los  elementos de el vector de forma aleatoria
 void mezclarVector(vector<int>& datos) {
     random_device dispositivo;
     mt19937 generador(dispositivo());
