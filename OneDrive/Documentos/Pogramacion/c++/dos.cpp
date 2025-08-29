@@ -45,3 +45,30 @@ int particionar(vector<int>& arr, int left, int right, int pivotIndex) {
     return indiceAlmacenamiento;
 }
 
+ 
+int quickSelect(vector<int>& arr, int left, int right, int k) {
+    while (true) {
+        //cuando el subarreglo tiene un solo elemento
+        if (left == right) {
+            return arr[left];
+        }
+        
+        // agarrar pivote aleatorio
+        int pivotIndex = left + rand() % (right - left + 1);
+        
+        // partir el arreglo y obtener la nueva posición del pivote
+        pivotIndex = particionar(arr, left, right, pivotIndex);
+        
+        if (k == pivotIndex) {
+            return arr[k];
+        }
+        // si k está en la parte izquierda del pivote
+        else if (k < pivotIndex) {
+            right = pivotIndex - 1; // se descarta la parte derecha
+        }
+        // si k está en la parte derecha del pivote
+        else {
+            left = pivotIndex + 1; //se descarta la parte izquierda
+        }
+    }
+}
