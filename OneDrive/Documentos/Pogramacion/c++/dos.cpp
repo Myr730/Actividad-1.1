@@ -110,3 +110,16 @@ void mezclarVector(vector<int>& datos) {
 }
 
 
+int main() {
+    srand(time(0));
+
+    vector<int> tamanios = {1048576, 2097152, 4194304, 8388608, 16777216};
+    const int repeticiones = 5;
+    const int valorMaximo = 1000000;
+    
+    cout << "=== MEDIANA POR SELECCIÓN DURANTE ORDENAMIENTO (QUICKSELECT) ===" << endl;
+    cout << "Tamaños: 2^20, 2^21, 2^22, 2^23, 2^24 elementos" << endl;
+    cout << "Repeticiones por tamaño: " << repeticiones << endl;
+    cout << "Rango de valores: 0 a " << valorMaximo << endl;
+
+}
