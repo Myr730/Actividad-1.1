@@ -73,6 +73,11 @@ int quickSelect(vector<int>& arr, int left, int right, int k) {
     }
 }
 
+// implementación de QuickSelect para encontrar k que es el elemento más pequeño
+ //calcula la mediana usando selección durante ordenamiento parcial con QuickSelect
+ //complejidad: O(n) tiempo promedio, O(n²) peor caso
+ //param datos - Vector de enteros
+ //return - Valor de la mediana
 int calcularMedianaQuickSelect(vector<int>& datos) {
     int n = datos.size();
     
@@ -87,6 +92,8 @@ int calcularMedianaQuickSelect(vector<int>& datos) {
     }
 }
 
+//param tamaño - tamaño del vector a generar
+ //param valormaximo de los números aleatorios
 vector<int> generarDatosAleatorios(int tamaño, int valorMaximo) {
     vector<int> datos(tamaño);
     for (int i = 0; i < tamaño; i++) {
@@ -94,4 +101,12 @@ vector<int> generarDatosAleatorios(int tamaño, int valorMaximo) {
     }
     return datos;
 }
+
+ //mezcla de elementos en un vector de forma aleatoria
+void mezclarVector(vector<int>& datos) {
+    random_device dispositivo;
+    mt19937 generador(dispositivo());
+    shuffle(datos.begin(), datos.end(), generador);
+}
+
 
