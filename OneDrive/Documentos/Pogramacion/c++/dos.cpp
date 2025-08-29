@@ -72,3 +72,26 @@ int quickSelect(vector<int>& arr, int left, int right, int k) {
         }
     }
 }
+
+int calcularMedianaQuickSelect(vector<int>& datos) {
+    int n = datos.size();
+    
+    if (n % 2 == 1) {
+        //para tamaño impar
+        return quickSelect(datos, 0, n - 1, n / 2);
+    } else {
+        //para tamaño par
+        int primero = quickSelect(datos, 0, n - 1, n / 2 - 1);
+        int segundo = quickSelect(datos, 0, n - 1, n / 2);
+        return (primero + segundo) / 2;
+    }
+}
+
+vector<int> generarDatosAleatorios(int tamaño, int valorMaximo) {
+    vector<int> datos(tamaño);
+    for (int i = 0; i < tamaño; i++) {
+        datos[i] = rand() % valorMaximo;
+    }
+    return datos;
+}
+
