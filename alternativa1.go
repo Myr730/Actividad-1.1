@@ -53,7 +53,7 @@ func calculaMediana(sorted []int) float64 {
 }
 
 func main() {
-	exponente := 20 //Canbiar para cada prueba.
+	exponente := 24 //Canbiar para cada prueba.
 	size := int(math.Pow(2, float64(exponente)))
 	data := reordenar(size)
 	sorted := mergeSort(data)
