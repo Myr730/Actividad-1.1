@@ -53,10 +53,11 @@ func calculaMediana(sorted []int) float64 {
 }
 
 func main() {
-	exponente := 20
+	exponente := 20 //Canbiar para cada prueba.
 	size := int(math.Pow(2, float64(exponente)))
 	data := reordenar(size)
 	sorted := mergeSort(data)
 	mediana := calculaMediana(sorted)
-	fmt.Println(mediana)
+	fmt.Printf("2^%d\n", exponente)
+	fmt.Printf("Mediana: %.0f\n", mediana)
 }
