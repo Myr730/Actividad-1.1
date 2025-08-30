@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
+	"time"
 )
 
 func mergeSort(array []int) []int {
@@ -53,11 +54,13 @@ func calculaMediana(sorted []int) float64 {
 }
 
 func main() {
-	exponente := 24 //Canbiar para cada prueba.
+	exponente := 24 //Cambiar para cada prueba.
 	size := int(math.Pow(2, float64(exponente)))
 	data := reordenar(size)
 	sorted := mergeSort(data)
 	mediana := calculaMediana(sorted)
+	start := time.Now()
 	fmt.Printf("2^%d\n", exponente)
 	fmt.Printf("Mediana: %.0f\n", mediana)
+	fmt.Printf("Tiempo de ejecución: %v\n", time.Since(start))
 }
